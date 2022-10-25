@@ -3,24 +3,23 @@ import { Link } from "react-router-dom";
 // import { Link } from "react-bootstrap/lib/Navbar";
 
 const Header = () => {
-
    const [offset, setOffset] = useState(0);
 
-    useEffect(() => {
-        const onScroll = () => setOffset(window.pageYOffset);
-        // clean up code
-        window.removeEventListener('scroll', onScroll);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+   useEffect(() => {
+      const onScroll = () => setOffset(window.pageYOffset);
+      // clean up code
+      window.removeEventListener("scroll", onScroll);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+   }, []);
 
-    console.log(offset); 
+   console.log(offset);
 
    return (
-      <nav className="navbar navbar-expand-md bg-transparent fixed-top">
+      <nav className={`navbar navbar-expand-md fixed-top ${offset < 60 ? "bg-transparent" : "bg-dark"}`} style={{ transition: "all 0.5s 0s ease" }}>
          <div className="container-fluid">
-            <Link to="" className="navbar-brand fs-3 text-light" >
-               <img src="images/logo.png" alt="" style={{width:'85px'}} />
+            <Link to="" className="navbar-brand fs-3 text-light">
+               <img src="images/logo.png" alt="" style={{ width: "85px" }} />
                Gain Talent
             </Link>
             <button className="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,22 +33,22 @@ const Header = () => {
                      </Link>
                   </li>
                   <li className="nav-item">
-                     <Link to="" className="nav-link text-light" >
+                     <Link to="" className="nav-link text-light">
                         Features
                      </Link>
                   </li>
                   <li className="nav-item">
-                     <Link to="" className="nav-link text-light" >
+                     <Link to="" className="nav-link text-light">
                         Pricing
                      </Link>
                   </li>
                   <li className="nav-item">
-                     <Link to="" className="nav-link text-light" >
+                     <Link to="" className="nav-link text-light">
                         Register
                      </Link>
                   </li>
                   <li className="nav-item">
-                     <Link to="" className="nav-link text-light" >
+                     <Link to="" className="nav-link text-light">
                         Log in
                      </Link>
                   </li>
