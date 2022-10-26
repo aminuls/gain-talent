@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
 const Cards = ({ classes }) => {
-   console.log(classes);
+   // console.log(classes);
    return (
       <div className="position-relative" style={{ bottom: "calc(1rem + 5vw)" }}>
          <div className="pb-4">
