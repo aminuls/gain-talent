@@ -13,7 +13,7 @@ const Header = () => {
       return () => window.removeEventListener("scroll", onScroll);
    }, []);
 
-   console.log(offset);
+   // console.log(offset);
 
    return (
       <nav className={`navbar navbar-expand-md fixed-top ${offset < 60 ? "bg-transparent" : "bg-dark"}`} style={{ transition: "all 0.5s 0s ease" }}>
@@ -26,7 +26,7 @@ const Header = () => {
                <span className="navbar-toggler-icon text-light"></span>
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-               <ul className="navbar-nav fs-6 fw-semibold gap-lg-4 gap-md-2 bg-lg-dark">
+               <ul className="navbar-nav fs-6 fw-semibold gap-lg-4 gap-md-2">
                   <li className="nav-item">
                      <Link to="" className="nav-link text-light" aria-current="page">
                         Home

@@ -13,15 +13,18 @@ function App() {
          children: [
             {
                path: "/",
-               element: <Home></Home>
+               element: <Home></Home>,
+               loader: async()=>{
+                  return fetch("https://gain-talent-server.vercel.app/classes")
+               }
             },
             {
                path: "/register",
-               element: <Register></Register>
+               element: <Register></Register>,
             },
             {
                path: "/login",
-               element: <Login></Login>
+               element: <Login></Login>,
             },
          ],
       },
