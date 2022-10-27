@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Main from "./layouts/Main";
+import ClassDetails from "./pages/ClassDetails";
+import Classes from "./pages/Classes";
+import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -15,12 +18,22 @@ function App() {
                path: "/",
                element: <Home></Home>,
                loader: async()=>{
+                  return fetch("https://gain-talent-server.vercel.app/popular")
+               }
+            },
+            {
+               path: "/classes",
+               element: <Classes></Classes>,
+               loader: async()=>{
                   return fetch("https://gain-talent-server.vercel.app/classes")
                }
             },
             {
-               path: "/register",
-               element: <Register></Register>,
+               path: "/classdetails/:id",
+               element: <ClassDetails></ClassDetails>,
+               loader: async({params})=>{
+                  return fetch(`https://gain-talent-server.vercel.app/classdetails/${params.id}`)
+               }
             },
             {
                path: "/login",
@@ -28,6 +41,10 @@ function App() {
             },
          ],
       },
+      {
+         path: "*",
+         element: <Error></Error>
+      }
    ]);
    return (
       <div className="App">

@@ -14,7 +14,7 @@ const Home = () => {
          <SlideCaro></SlideCaro>
          <SvgGen></SvgGen>
          <TechCard></TechCard>
-         <Cards classes={classes}></Cards>
+         <div className='container'><Cards classes={classes} title="Popular Classes"></Cards></div>
          <Packages></Packages>
       </div>
    );

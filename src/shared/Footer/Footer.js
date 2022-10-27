@@ -7,7 +7,7 @@ const Footer = () => {
          <div className="card w-100 border-0 rounded-0 bg-dark text-light px-2 py-4 py-lg-5">
             <div className="card-body border-0">
                <Link to="">
-                  <img src="images/logo.png" alt="logo" style={{ height: "60px" }} />
+                  <img src="../images/logo.png" alt="" style={{ height: "60px" }} />
                </Link>
                <h4 className="card-title mt-2">Gain Talent</h4>
                <p className="card-text fw-light fs-5">Providing reliable tech since 1992</p>

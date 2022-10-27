@@ -6,13 +6,13 @@ const SlideCaro = () => {
       <div className="position-relative">
          <Carousel>
             <Carousel.Item>
-               <img className="d-block w-100" style={{ maxHeight: "85vh" }} src="images/banner8.jpg" alt="First slide" />
+               <img className="d-block w-100" style={{ maxHeight: "85vh" }} src="../images/banner8.jpg" alt="First slide" />
             </Carousel.Item>
             <Carousel.Item>
-               <img className="d-block w-100" style={{ maxHeight: "85vh" }} src="images/banner4.jpg" alt="Second slide" />
+               <img className="d-block w-100" style={{ maxHeight: "85vh" }} src="../images/banner4.jpg" alt="Second slide" />
             </Carousel.Item>
             <Carousel.Item>
-               <img className="d-block w-100" style={{ maxHeight: "85vh" }} src="images/banner10.jpg" alt="Third slide" />
+               <img className="d-block w-100" style={{ maxHeight: "85vh" }} src="../images/banner10.jpg" alt="Third slide" />
             </Carousel.Item>
          </Carousel>
          <div className="mt-2 mt-md-0 position-absolute top-50 start-50 translate-middle m-0 w-75">
