@@ -4,14 +4,13 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useLoaderData } from "react-router-dom";
-import ReactPrint from 'react-to-print';
-import { BiDownload } from 'react-icons/bi';
-import { TbPremiumRights } from 'react-icons/tb';
-import { useRef } from 'react';
-
+import ReactPrint from "react-to-print";
+import { BiDownload } from "react-icons/bi";
+import { TbPremiumRights } from "react-icons/tb";
+import { useRef } from "react";
 
 const ClassDetails = () => {
-   const ref = useRef()
+   const ref = useRef();
    const singleClass = useLoaderData();
    const { author, banner, category, title, class_quantity, course_name, description, id } = singleClass;
    console.log(singleClass);
@@ -21,16 +20,25 @@ const ClassDetails = () => {
          <div className="position-relative container my-5">
             <Row xs={1} className="mx-auto">
                <Col>
-
-
-
                   <div className="d-flex justify-content-between justify-content-lg-end gap-3 w-100 mb-3">
-                     <button className="fw-semibold btn btn-danger"><span><TbPremiumRights className="fs-3"></TbPremiumRights></span> <span>Get Premium Access</span></button>
-                     <ReactPrint trigger={()=><button className="fw-semibold btn btn-dark">
-                        <span><BiDownload className="fs-3"></BiDownload></span> <span>Downlod PDF</span></button>} content={()=>ref.current} />
+                     <button className="fw-semibold btn btn-danger">
+                        <span>
+                           <TbPremiumRights className="fs-3"></TbPremiumRights>
+                        </span>{" "}
+                        <span>Get Premium Access</span>
+                     </button>
+                     <ReactPrint
+                        trigger={() => (
+                           <button className="fw-semibold btn btn-dark">
+                              <span>
+                                 <BiDownload className="fs-3"></BiDownload>
+                              </span>{" "}
+                              <span>Downlod PDF</span>
+                           </button>
+                        )}
+                        content={() => ref.current}
+                     />
                   </div>
-
-
                   <Card ref={ref} className="rounded-3 h-100 border-0 text-start">
                      {/* {console.log(singleClass)} */}
                      <Card.Title className="fs-3 mb-3">{title}</Card.Title>
@@ -47,20 +55,20 @@ const ClassDetails = () => {
                               <Card.Text className="m-0 fw-semibold">Class: {class_quantity}</Card.Text>
                            </div>
                         </div>
-                     </Card.Body>
-                     <Card.Footer className="border-0 bg-transparent">
-                        <h4>Description:</h4>
-                        <Card.Text className="fw-semibold">{singleClass?.brief_des}</Card.Text>
-                        <div>
-                           {singleClass?.brief_ul.map((u) => (
-                              <div className="fw-semibold">
-                                 <ul style={{ listStyleType: "circle" }}>
-                                    <li>{u}</li>
-                                 </ul>
-                              </div>
-                           ))}
+                        <div className="mt-4">
+                           <h4>Description:</h4>
+                           <Card.Text className="fw-semibold">{singleClass?.brief_des}</Card.Text>
+                           <div>
+                              {singleClass?.brief_ul.map((u) => (
+                                 <div className="fw-semibold">
+                                    <ul style={{ listStyleType: "circle" }}>
+                                       <li>{u}</li>
+                                    </ul>
+                                 </div>
+                              ))}
+                           </div>
                         </div>
-                     </Card.Footer>
+                     </Card.Body>
                   </Card>
                </Col>
             </Row>
