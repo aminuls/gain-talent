@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useLoaderData } from "react-router-dom";
 import ReactPrint from 'react-to-print';
+import { BiDownload } from 'react-icons/bi';
+import { TbPremiumRights } from 'react-icons/tb';
 import { useRef } from 'react';
 
 
@@ -23,8 +25,9 @@ const ClassDetails = () => {
 
 
                   <div className="d-flex justify-content-between justify-content-lg-end gap-3 w-100 mb-3">
-                     <button>Get Premium Access</button>
-                     <ReactPrint trigger={()=><button>Downlod PDF</button>} content={()=>ref.current} />
+                     <button className="fw-semibold btn btn-danger"><span><TbPremiumRights className="fs-3"></TbPremiumRights></span> <span>Get Premium Access</span></button>
+                     <ReactPrint trigger={()=><button className="fw-semibold btn btn-dark">
+                        <span><BiDownload className="fs-3"></BiDownload></span> <span>Downlod PDF</span></button>} content={()=>ref.current} />
                   </div>
 
 
