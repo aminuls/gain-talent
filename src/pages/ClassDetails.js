@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ReactPrint from "react-to-print";
 import { BiDownload } from "react-icons/bi";
 import { TbPremiumRights } from "react-icons/tb";
@@ -12,7 +12,7 @@ import { useRef } from "react";
 const ClassDetails = () => {
    const ref = useRef();
    const singleClass = useLoaderData();
-   const { author, banner, category, title, class_quantity, course_name, description, id } = singleClass;
+   const { author, banner, title, class_quantity, course_name, description, id } = singleClass;
    console.log(singleClass);
    return (
       <div>
@@ -21,12 +21,14 @@ const ClassDetails = () => {
             <Row xs={1} className="mx-auto">
                <Col>
                   <div className="d-flex justify-content-between justify-content-lg-end gap-3 w-100 mb-3">
-                     <button className="fw-semibold btn btn-danger">
-                        <span>
-                           <TbPremiumRights className="fs-3"></TbPremiumRights>
-                        </span>{" "}
-                        <span>Get Premium Access</span>
-                     </button>
+                     <Link to={`/checkout/${id}`}>
+                        <button className="fw-semibold btn btn-danger">
+                           <span>
+                              <TbPremiumRights className="fs-3"></TbPremiumRights>
+                           </span>{" "}
+                           <span>Get Premium Access</span>
+                        </button>
+                     </Link>
                      <ReactPrint
                         trigger={() => (
                            <button className="fw-semibold btn btn-dark">

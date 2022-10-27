@@ -16,14 +16,6 @@ const Classes = () => {
             </div>
             <div className="d-none d-md-block col-md-3 ">
                <div className="mt-4">
-                  {/* <div>
-                     <div>
-                        <h2>Categories</h2>
-                     </div>
-                     <div>
-
-                     </div>
-                  </div> */}
                   <div>
                      <div>
                         <h2 className="display-6">All Classes</h2>

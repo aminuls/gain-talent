@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Main from "./layouts/Main";
+import Checkout from "./pages/Checkout";
 import ClassDetails from "./pages/ClassDetails";
 import Classes from "./pages/Classes";
 import Error from "./pages/Error";
@@ -38,6 +39,17 @@ function App() {
             {
                path: "/login",
                element: <Login></Login>,
+            },
+            {
+               path: "/register",
+               element: <Register></Register>,
+            },
+            {
+               path: "/checkout/:id",
+               element: <Checkout></Checkout>,
+               loader: async({params})=>{
+                  return fetch(`https://gain-talent-server.vercel.app/classdetails/${params.id}`)
+               }
             },
          ],
       },
