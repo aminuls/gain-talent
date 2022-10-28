@@ -8,6 +8,9 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Faq from "./pages/Faq";
+import Blog from "./pages/Blog";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
    const router = createBrowserRouter([
@@ -18,23 +21,23 @@ function App() {
             {
                path: "/",
                element: <Home></Home>,
-               loader: async()=>{
-                  return fetch("https://gain-talent-server.vercel.app/popular")
-               }
+               loader: async () => {
+                  return fetch("https://gain-talent-server.vercel.app/popular");
+               },
             },
             {
                path: "/classes",
                element: <Classes></Classes>,
-               loader: async()=>{
-                  return fetch("https://gain-talent-server.vercel.app/classes")
-               }
+               loader: async () => {
+                  return fetch("https://gain-talent-server.vercel.app/classes");
+               },
             },
             {
                path: "/classdetails/:id",
                element: <ClassDetails></ClassDetails>,
-               loader: async({params})=>{
-                  return fetch(`https://gain-talent-server.vercel.app/classdetails/${params.id}`)
-               }
+               loader: async ({ params }) => {
+                  return fetch(`https://gain-talent-server.vercel.app/classdetails/${params.id}`);
+               },
             },
             {
                path: "/login",
@@ -45,18 +48,30 @@ function App() {
                element: <Register></Register>,
             },
             {
+               path: "/faq",
+               element: <Faq></Faq>,
+            },
+            {
+               path: "/blog",
+               element: <Blog></Blog>,
+            },
+            {
                path: "/checkout/:id",
-               element: <Checkout></Checkout>,
-               loader: async({params})=>{
-                  return fetch(`https://gain-talent-server.vercel.app/classdetails/${params.id}`)
-               }
+               element: (
+                  <ProtectedRoute>
+                     <Checkout></Checkout>
+                  </ProtectedRoute>
+               ),
+               loader: async ({ params }) => {
+                  return fetch(`https://gain-talent-server.vercel.app/classdetails/${params.id}`);
+               },
             },
          ],
       },
       {
          path: "*",
-         element: <Error></Error>
-      }
+         element: <Error></Error>,
+      },
    ]);
    return (
       <div className="App">

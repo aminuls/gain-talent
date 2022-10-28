@@ -33,7 +33,7 @@ const Packages = () => {
                            <ul className="text-decoration-none fw-semibold fs-6 mt-4" style={{ listStyleType: "none" }}>
                               {packages === "Free"
                                  ? pack?.package_free.map((service, idx) => (
-                                      <div className="d-flex align-items-baseline gap-2 mt-3">
+                                      <div key={idx} className="d-flex align-items-baseline gap-2 mt-3">
                                          <div>
                                             {service.status ? (
                                                <MdCheckCircle className="text-success" style={{ width: "22px", height: "22px" }}></MdCheckCircle>
@@ -46,7 +46,7 @@ const Packages = () => {
                                    ))
                                  : packages === "Standard"
                                  ? pack?.package_standard.map((service, idx) => (
-                                      <div className="d-flex align-items-baseline gap-2 mt-3">
+                                      <div key={idx} className="d-flex align-items-baseline gap-2 mt-3">
                                          <div>
                                             {service.status ? (
                                                <MdCheckCircle className="text-success" style={{ width: "22px", height: "22px" }}></MdCheckCircle>
@@ -58,7 +58,7 @@ const Packages = () => {
                                       </div>
                                    ))
                                  : pack?.package_premium.map((service, idx) => (
-                                      <div className="d-flex align-items-baseline gap-2 mt-3">
+                                      <div key={idx} className="d-flex align-items-baseline gap-2 mt-3">
                                          <div>
                                             <MdCheckCircle className="text-success" style={{ width: "22px", height: "22px" }}></MdCheckCircle>
                                          </div>

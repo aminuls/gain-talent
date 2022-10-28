@@ -9,7 +9,6 @@ const Classes = () => {
    return (
       <div>
          <div className="w-100 bg-dark" style={{ height: "100px" }}></div>
-         <div className="d-lg-none"></div>
          <div className="row">
             <div className="col-md-9" style={{ marginTop: "calc(2rem + 5vw)" }}>
                <Cards classes={allCourse} title="All Classes"></Cards>

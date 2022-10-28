@@ -1,6 +1,6 @@
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import app from "../firebase/firebase.init";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import { useContext } from "react";
@@ -8,17 +8,25 @@ import { AuthContext } from "../contexts/AuthProvider";
 
 const auth = getAuth(app);
 const Login = () => {
-   const {setUser, providerLogin} = useContext(AuthContext);
+   const {setUser, providerLogin, setLoading} = useContext(AuthContext);
    const [success, setSuccess] = useState(false);
    const [userEmail, setUserEmail] = useState(null);
    const googleProvider = new GoogleAuthProvider()
    const githubProvider = new GithubAuthProvider();
+
+   const navigate = useNavigate();
+   // console.log("from ai to better ", navigate);
+
+   const location = useLocation();
+   console.log("from login", location);
+   const from = location.state?.from?.pathname || "/";
 
    const handleGoogle = () =>{
       providerLogin(googleProvider)
       .then((result)=>{
          const user = result.user;
          setUser(user);
+         navigate(from, { replace: true });
       })
       .catch((error)=>{
          console.log(error);
@@ -30,6 +38,7 @@ const Login = () => {
       .then((result)=>{
          const user = result.user;
          setUser(user);
+         navigate(from, { replace: true });
       })
       .catch((error)=>{
          console.log(error);
@@ -39,6 +48,7 @@ const Login = () => {
 
    const handleSubmit = (event) => {
       event.preventDefault();
+      setLoading(true);
       setSuccess(false);
       const form = event.target;
       const email = form.email.value;
@@ -49,6 +59,7 @@ const Login = () => {
             setUser(user);
             // console.log(user);
             setSuccess(true);
+            navigate(from, { replace: true });
          })
          .catch((error) => {
             console.error("error", error);

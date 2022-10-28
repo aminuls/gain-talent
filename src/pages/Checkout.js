@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -30,7 +30,7 @@ const Checkout = () => {
                                  <Card.Title className="text-start">{singleClass.title}</Card.Title>
                                  <Card.Text className="text-start mb-2">
                                     {singleClass.description.slice(0, 55) + "..."}
-                                    <Link to="" className="text-decoration-none">
+                                    <Link to={`/classdetails/${singleClass.id}`} className="text-decoration-none">
                                        Read More
                                     </Link>
                                  </Card.Text>

@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
+import ReactTooltip from "react-tooltip";
 
 const Header = () => {
+   const { user, logOut } = useContext(AuthContext);
    const [offset, setOffset] = useState(0);
    const [toggleTheme, setToggleTheme] = useState(true);
    const [mobMenu, setmobMenu] = useState(false);
+
+   const handleSignOut = () => {
+      logOut()
+         .then(() => {})
+         .catch((error) => {
+            console.log(error);
+         });
+   };
 
    useEffect(() => {
       const onScroll = () => setOffset(window.pageYOffset);
@@ -28,7 +40,7 @@ const Header = () => {
                <span className="navbar-toggler-icon text-light"></span>
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-               <ul className="navbar-nav fs-6 fw-semibold gap-lg-4 gap-md-2">
+               <ul className="navbar-nav fs-6 fw-semibold gap-lg-4 gap-md-2 align-items-center">
                   <li className="nav-item">
                      <Link to="/" className="nav-link text-light" aria-current="page">
                         Home
@@ -49,11 +61,25 @@ const Header = () => {
                         Blog
                      </Link>
                   </li>
-                  <li className="nav-item">
-                     <Link to="/login" className="nav-link text-light">
-                        Log in
-                     </Link>
-                  </li>
+                  {console.log(user)}
+                  {user?.uid ? (
+                     <>
+                        <li className="nav-item">
+                           <button onClick={handleSignOut} className="nav-link text-light bg-transparent border-0">
+                              Log out
+                           </button>
+                        </li>
+                        <li className="nav-item">
+                           <img data-place="bottom" data-tip={user?.displayName} className="nav-link rounded-circle" style={{ height: "60px", width: "60px" }} src={user?.photoURL} alt="profile" />
+                        </li>
+                     </>
+                  ) : (
+                     <li className="nav-item">
+                        <Link to="/login" className="nav-link text-light">
+                           Log in
+                        </Link>
+                     </li>
+                  )}
                   <li className="nav-item">
                      <button className="nav-link text-light bg-transparent border-0 w-100 justify-content-center" onClick={() => setToggleTheme(!toggleTheme)}>
                         {toggleTheme ? <MdLightMode style={{ height: "26px", width: "26px" }}></MdLightMode> : <MdDarkMode style={{ height: "26px", width: "26px" }}></MdDarkMode>}
@@ -62,6 +88,7 @@ const Header = () => {
                </ul>
             </div>
          </div>
+         <ReactTooltip />
       </nav>
    );
 };
