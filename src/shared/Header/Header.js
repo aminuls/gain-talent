@@ -70,7 +70,7 @@ const Header = () => {
                            </button>
                         </li>
                         <li className="nav-item">
-                           <img data-place="bottom" data-tip={user?.displayName} className="nav-link rounded-circle" style={{ height: "60px", width: "60px" }} src={user?.photoURL} alt="profile" />
+                           <img className="nav-link rounded-circle" style={{ height: "60px", width: "60px" }} src={user?.photoURL} alt="profile" data-place="bottom" data-tip={user?.displayName}/>
                         </li>
                      </>
                   ) : (

@@ -9,6 +9,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 const auth = getAuth(app);
 const Login = () => {
    const {setUser, providerLogin, setLoading} = useContext(AuthContext);
+   const [error, setError] = useState(null);
    const [success, setSuccess] = useState(false);
    const [userEmail, setUserEmail] = useState(null);
    const googleProvider = new GoogleAuthProvider()
@@ -62,6 +63,7 @@ const Login = () => {
             navigate(from, { replace: true });
          })
          .catch((error) => {
+            setError(error.message);
             console.error("error", error);
          });
    };
@@ -108,6 +110,9 @@ const Login = () => {
                         Password
                      </label>
                      <input name="password" type="password" className="form-control" id="formGroupExampleInput2" placeholder="Password" required />
+                  </div>
+                  <div>
+                     <p className="text-danger">{error}</p>
                   </div>
                   <div>
                      <button className="btn btn-primary px-3" type="submit">

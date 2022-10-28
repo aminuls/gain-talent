@@ -40,6 +40,7 @@ const Register = () => {
       setSuccess(false);
       const form = event.target;
       const name = form.name.value;
+      const photourl = form.photourl.value;
       const email = form.email.value;
       const password = form.password.value;
       console.log(name, email, password);
@@ -68,7 +69,7 @@ const Register = () => {
             setSuccess(true);
             form.reset();
             verifyEmail();
-            updateUserName(name);
+            updateUserName(name, photourl);
          })
          .catch((error) => {
             console.error(error);
@@ -82,9 +83,10 @@ const Register = () => {
       });
    };
 
-   const updateUserName = (name) => {
+   const updateUserName = (name, photoURL) => {
       updateProfile(auth.currentUser, {
          displayName: name,
+         photoURL: photoURL,
       })
          .then(() => {
             console.log("display name updated");
