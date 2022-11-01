@@ -15,7 +15,7 @@ const Packages = () => {
          .then((res) => res.json())
          .then((data) => setPack(data));
    }, []);
-   console.log(pack?.services);
+   // console.log("packages" ,pack?.packages);
    return (
       <div className="position-relative mb-5 pb-5" style={{ top: "calc(0.5rem + 2vw)" }}>
          <div className="pb-4">
@@ -24,6 +24,7 @@ const Packages = () => {
          <Row xs={1} md={2} lg={3} className="g-4 container mx-auto">
             {pack?.packages.map((packages, idx) => (
                <Col key={idx}>
+                  {/* {console.log(packages)} */}
                   <Card className="rounded-3 h-100 p-1">
                      {/* {console.log(singleClass)} */}
                      <Card.Body className="pb-2">
@@ -31,7 +32,7 @@ const Packages = () => {
                         <Card.Text className="fs-2 text-muted">${packages.price}</Card.Text>
                         <div className="text-start">
                            <ul className="text-decoration-none fw-semibold fs-6 mt-4" style={{ listStyleType: "none" }}>
-                              {packages === "Free"
+                              {packages.package_name === "Free"
                                  ? pack?.package_free.map((service, idx) => (
                                       <div key={idx} className="d-flex align-items-baseline gap-2 mt-3">
                                          <div>
@@ -44,7 +45,7 @@ const Packages = () => {
                                          <li key={idx}>{service.option}</li>
                                       </div>
                                    ))
-                                 : packages === "Standard"
+                                 : packages.package_name === "Standard"
                                  ? pack?.package_standard.map((service, idx) => (
                                       <div key={idx} className="d-flex align-items-baseline gap-2 mt-3">
                                          <div>
@@ -69,9 +70,11 @@ const Packages = () => {
                         </div>
                      </Card.Body>
                      <Card.Footer className="border-0 bg-transparent d-flex justify-content-between w-100">
-                        <Button className="w-100 fw-semibold" variant="danger">
-                           Add To Cart
-                        </Button>
+                        <Link className="w-100" to={`/checkout/${packages.package_name}`}>
+                           <Button className="w-100 fw-semibold" variant="danger">
+                              Add To Cart
+                           </Button>
+                        </Link>
                      </Card.Footer>
                   </Card>
                </Col>

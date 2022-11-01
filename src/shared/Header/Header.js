@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
-import ReactTooltip from "react-tooltip";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css"; // optional
 
 const Header = () => {
    const { user, logOut } = useContext(AuthContext);
@@ -31,7 +32,6 @@ const Header = () => {
 
    return (
       <>
-         <ReactTooltip />
          <nav className={`navbar navbar-expand-md fixed-top ${offset < 60 ? (mobMenu ? "bg-dark" : "bg-transparent") : "bg-dark"}`} style={{ transition: "all 0.5s 0s ease" }}>
             <div className="container-fluid">
                <Link to="" className="navbar-brand fs-3 text-light">
@@ -71,8 +71,10 @@ const Header = () => {
                                  Log out
                               </button>
                            </li>
-                           <li data-tip={user.displayName} data-place="bottom" className="nav-item">
-                              <img title={user.displayName} className="nav-link rounded-circle" style={{ height: "60px", width: "60px" }} src={user?.photoURL} alt="profile"/>
+                           <li className="nav-item">
+                              <Tippy content={user.displayName}>
+                                 <img className="nav-link rounded-circle" style={{ height: "60px", width: "60px" }} src={user?.photoURL} alt="profile" />
+                              </Tippy>
                            </li>
                         </>
                      ) : (

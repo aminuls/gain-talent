@@ -18,29 +18,33 @@ const Checkout = () => {
                <div className="col-12 col-md-8">
                   <div className="card">
                      <Row xs={1} md={2} className="g-1 mx-auto">
-                        <Col>
-                           <Card className="rounded-3 h-100 p-1 border-0">
-                              {/* {console.log(singleClass)} */}
-                              <Card.Img variant="top" className="rounded-3 h-100" src={singleClass.banner} />
-                           </Card>
-                        </Col>
-                        <Col>
-                           <Card className="rounded-3 h-100 p-1 border-0">
-                              <Card.Body className="pb-2">
-                                 <Card.Title className="text-start">{singleClass.title}</Card.Title>
-                                 <Card.Text className="text-start mb-2">
-                                    {singleClass.description.slice(0, 55) + "..."}
-                                    <Link to={`/classdetails/${singleClass.id}`} className="text-decoration-none">
-                                       Read More
-                                    </Link>
-                                 </Card.Text>
-                                 <Card.Text className="text-start text-secondary fs-6">
-                                    Created By <span className="fw-semibold">{singleClass.author}</span>
-                                 </Card.Text>
-                                 <Card.Text className="text-start fs-4">Product id: {singleClass.id}</Card.Text>
-                              </Card.Body>
-                           </Card>
-                        </Col>
+                        {singleClass?.id ? (
+                           <>
+                              <Col>
+                                 <Card className="rounded-3 h-100 p-1 border-0">
+                                    {/* {console.log(singleClass)} */}
+                                    <Card.Img variant="top" className="rounded-3 h-100" src={singleClass?.banner} />
+                                 </Card>
+                              </Col>
+                              <Col>
+                                 <Card className="rounded-3 h-100 p-1 border-0">
+                                    <Card.Body className="pb-2">
+                                       <Card.Title className="text-start">{singleClass?.title}</Card.Title>
+                                       <Card.Text className="text-start mb-2">
+                                          {singleClass?.description?.slice(0, 55) + "..."}
+                                          <Link to={`/classdetails/${singleClass?.id}`} className="text-decoration-none">
+                                             Read More
+                                          </Link>
+                                       </Card.Text>
+                                       <Card.Text className="text-start text-secondary fs-6">
+                                          Created By <span className="fw-semibold">{singleClass?.author}</span>
+                                       </Card.Text>
+                                       <Card.Text className="text-start fs-4">Product id: {singleClass?.id}</Card.Text>
+                                    </Card.Body>
+                                 </Card>
+                              </Col>
+                           </>
+                        ) : null}
                      </Row>
                   </div>
                </div>
@@ -50,12 +54,12 @@ const Checkout = () => {
                         <h1 className="card-title display-1 m-0">
                            <MdPayments></MdPayments>
                         </h1>
-                        <form onSubmit="" className="fw-semibold">
+                        <form className="fw-semibold">
                            <div className="mb-3 text-start">
                               <label htmlFor="formGroupExampleInput" className="form-label">
                                  Name
                               </label>
-                              <input onBlur="" name="name" type="text" className="form-control" id="formGroupExampleInput" placeholder="Your Name" required />
+                              <input name="name" type="text" className="form-control" id="formGroupExampleInput" placeholder="Your Name" required />
                            </div>
                            <div className="mb-3 text-start">
                               <label htmlFor="formGroupExampleInput2" className="form-label">
